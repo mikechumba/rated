@@ -14,6 +14,14 @@ class Profile(models.Model):
    def __str__(self):
       return self.user.username
 
+class Language(models.Model):
+   '''
+   Holds data for the programming languages used.
+   '''
+
+   language = models.CharField(max_length=50)
+   framework = models.CharField(max_length=50)
+
 class Project(models.Model):
    '''
    To hold user's project data.
@@ -24,4 +32,3 @@ class Project(models.Model):
    description = models.TextField(max_length=140)
    img = models.ImageField(upload_to='projects/')
    time_published = models.DateField(auto_now=True)
-   
