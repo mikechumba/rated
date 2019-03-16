@@ -22,6 +22,15 @@ class Language(models.Model):
    language = models.CharField(max_length=50)
    framework = models.CharField(max_length=50)
 
+class Rating(models.Model):
+   '''
+   Hold projects' ratings
+   '''
+
+   design = models.IntegerField(default=0)
+   usability = models.IntegerField(default=0)
+   content = models.IntegerField(default=0)
+
 class Project(models.Model):
    '''
    To hold user's project data.
