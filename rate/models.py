@@ -14,6 +14,17 @@ class Profile(models.Model):
    def __str__(self):
       return self.user.username
 
+class Project(models.Model):
+   '''
+   Model to hold user's project data.
+   '''
+
+   author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+   name = models.CharField(max_length=70)
+   description = models.TextField(max_length=140)
+   img = models.ImageField(upload_to='projects/')
+   time_published = models.DateField(auto_now=True)
+
 class Language(models.Model):
    '''
    Holds data for the programming languages used.
@@ -21,6 +32,7 @@ class Language(models.Model):
 
    language = models.CharField(max_length=50)
    framework = models.CharField(max_length=50)
+   used_on = models.ForeignKey(Project, on_delete=models.CASCADE)
 
 class Rating(models.Model):
    '''
@@ -30,14 +42,4 @@ class Rating(models.Model):
    design = models.IntegerField(default=0)
    usability = models.IntegerField(default=0)
    content = models.IntegerField(default=0)
-
-class Project(models.Model):
-   '''
-   To hold user's project data.
-   '''
-
-   author = models.ForeignKey(Profile, on_delete=models.CASCADE)
-   name = models.CharField(max_length=70)
-   description = models.TextField(max_length=140)
-   img = models.ImageField(upload_to='projects/')
-   time_published = models.DateField(auto_now=True)
+   rated = models.ForeignKey(Project, on_delete=models.CASCADE)
