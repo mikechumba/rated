@@ -36,7 +36,7 @@ class Language(models.Model):
 
 class Rating(models.Model):
    '''
-   Hold projects' ratings
+   Model to hold projects' ratings
    '''
 
    design = models.IntegerField(default=0)
