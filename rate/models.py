@@ -43,3 +43,15 @@ class Rating(models.Model):
    usability = models.IntegerField(default=0)
    content = models.IntegerField(default=0)
    rated = models.ForeignKey(Project, on_delete=models.CASCADE)
+
+class Contact(models.Model):
+   '''
+   Contact class to hold the different contact details of a user
+   '''
+
+   facebook = models.CharField(max_length=70)
+   twitter = models.CharField(max_length=70)
+   instagram = models.CharField(max_length=70)
+   github = models.CharField(max_length=70)
+   email = models.CharField(max_length=70)
+   prfl = models.OneToOneField(Profile, on_delete=models.CASCADE)
