@@ -11,3 +11,4 @@ def home(request):
    }
 
    return render(request, 'rate/home.html', context)
+   
