@@ -58,7 +58,7 @@ nav {
    display: flex;
    flex-direction: row;
    width: 96%;
-   .logo {
+   .logo a {
       display: flex;
       align-self: center;
       .star-logo {
@@ -90,7 +90,7 @@ nav {
    }
 }
 
-.project-panel {
+.project-pane {
    overflow-x: scroll;
    margin: 2% 0;
    white-space: nowrap;
@@ -222,3 +222,107 @@ input {
    }
 }
 
+.project-panel {
+   display: flex;
+}
+
+.project-preview {
+   width: 46%;
+   margin: 2%;
+   .project-image {
+      width: 80%;
+      height: auto;
+      overflow: hidden;
+      img {
+         width: 100%;
+      }
+   }
+}
+
+
+.project-desc {
+   width: 46%;
+   margin: 2%;  
+}
+
+.project-meta {
+   h5 {
+      @include fonts(14px,600,rgba(#333,0.9));
+   }
+}
+
+.author {
+   display: flex;
+   p {
+      @include fonts(12px,500);
+      padding-left: 1%;
+   }
+}
+
+.avatar-sm {
+   align-self: center;
+   width: 28px;
+   height: 28px;
+   overflow: hidden;
+   border-radius: 50%;
+   border: 1px solid clr(scndry);  
+   img {
+      width: 100%;
+   }
+}
+
+.prjct-link {
+   i {
+      vertical-align: middle;
+      font-size: 16px;
+      color: clr(scndry);
+   }
+}
+
+.ratings {
+   padding: 1% 0;
+   input {
+      display: none;
+      
+   }
+   label {
+      &::before {
+         cursor: pointer;
+         font-family: "Font Awesome 5 Free";
+         content: '\f005';
+         display: inline-block;
+         margin-right: 3px;
+      }
+      &:hover::before {
+         font-family: "Font Awesome 5 Free";
+         content: '\f005';
+         display: inline-block;
+         color: clr(scndry);
+         fill: clr(scndry);
+         font-weight: 900;
+      }
+   }
+}
+
+.overall {
+   display: flex;
+   i {
+      align-self: center;
+      font-size: 24px;
+      color: clr(scndry);
+   }
+   div {
+      margin-left: 1%;
+      align-self: center;
+      line-height: 0.5;
+      h1 {
+         @include fonts(30px,700);
+      }
+   }
+}
+
+.description {
+   p {
+      @include fonts(14px,500);
+   }
+}

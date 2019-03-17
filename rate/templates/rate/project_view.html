@@ -5,6 +5,42 @@
 
    <div class="nav-bg">
       {% include "rate/nav.html" %}
-   </div>   
+   </div>
+
+   <div class="project-panel">
+
+      <div class="project-preview">
+         <div class="project-image">
+            <img src="{{ project.img.url }}" alt="">
+         </div>
+      </div>
+   
+      <div class="project-desc">
+         <div class="author">
+            <div class="avatar-sm">
+               <img src="{{ project.author.avatar.url }}" alt="">
+            </div>
+            <p>{{ project.author.user.first_name }} {{ project.author.user.last_name }}</p>
+         </div>
+         <div class="project-meta">
+            <h1>{{ project.name }} <a class='prjct-link' href="{{project.link}}"><i class="fas fa-external-link-alt"></i></a></h1>
+            <h5>{{ project.time_published|date:'M d, Y' }}</h5>
+            <div class="ratings">
+               <div class="overall">
+                  <i class="fas fa-star"></i>
+                  <div>
+                     <h1>{{ average }}</h1>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="description">
+
+            <p>{{ project.description }}</p>
+         </div>
+
+      </div>
+   </div>
+
   
 {% endblock content %}

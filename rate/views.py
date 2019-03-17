@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
 from .models import Profile,Project,Language,Rating,Contact
 from .forms import Registration,LoginForm,ProfileUpdateForm,ContactUpdateForm,ProjectForm
+from django.db.models import Sum
 
 # Create your views here.
 def home(request):
@@ -91,6 +92,8 @@ def new_project(request):
          project = form.save(commit=False)
          project.author = user.profile
          project.save()
+         rated = Rating(rated=project)
+         rated.save()
          return redirect('home')
    else:
       form = ProjectForm()
@@ -108,10 +111,17 @@ def project_view(request,id):
 
    project = Project.objects.filter(pk=id).first()
 
+   rating = Rating.objects.filter(rated=project)
+
+   average = (rating.aggregate(Sum('design'))['design__sum'] + rating.aggregate(Sum('usability'))['usability__sum'] + rating.aggregate(Sum('content'))['content__sum']) / rating.count()
+
    title = f'{project.name} by {project.author.user.first_name}'
 
    context = {
-      'title': title
+      'title': title,
+      'project': project,
+      'rating': rating,
+      'average': average
    }
 
    return render(request,'rate/project_view.html',context)

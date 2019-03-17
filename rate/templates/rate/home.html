@@ -16,11 +16,13 @@
 
    <div class="project-panel">
       {% for prjct in projects  %}
-         <div class="project-card">
-            <div class="image">
-               <img src="{{ prjct.img.url }}" alt="{{ prjct.name }}">
+         <a href="{% url 'project_view' prjct.id %}">
+            <div class="project-card">
+               <div class="image">
+                  <img src="{{ prjct.img.url }}" alt="{{ prjct.name }}">
+               </div>        
             </div>        
-         </div>        
+         </a>
       {% endfor %}
    </div>
 
