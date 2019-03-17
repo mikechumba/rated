@@ -100,4 +100,18 @@ def new_project(request):
       'title': title
    }
 
-   return render(request, 'rate/new_project.html',context)   
+   return render(request, 'rate/new_project.html',context)
+
+def project_view(request,id):
+
+   user = request.user
+
+   project = Project.objects.filter(pk=id).first()
+
+   title = f'{project.name} by {project.author.user.first_name}'
+
+   context = {
+      'title': title
+   }
+
+   return render(request,'rate/project_view.html',context)
