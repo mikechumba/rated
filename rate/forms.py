@@ -7,8 +7,8 @@ class Registration(UserCreationForm):
    '''
    User registration form.
    '''
-   first_name = forms.CharField(widget=form.TextInput(attrs={'placeholder': 'First Name'}))
-   last_name = forms.CharField(widget=form.TextInput(attrs={'placeholder': 'Last Name'}))
+   first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+   last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
    email= forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}), max_length=64)
    password1= forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))

@@ -8,8 +8,8 @@ class Profile(models.Model):
    '''
 
    user = models.OneToOneField(User, on_delete=models.CASCADE)
-   avatar = models.ImageField(upload_to='avatars/')
-   bio = models.TextField(max_length=140)
+   avatar = models.ImageField(upload_to='avatars/',null=True,default='default.jpg')
+   bio = models.TextField(max_length=140,null=True)
 
    def __str__(self):
       return self.user.username
@@ -58,10 +58,10 @@ class Contact(models.Model):
    Contact class to hold the different contact details of a user
    '''
 
-   facebook = models.CharField(max_length=70)
-   twitter = models.CharField(max_length=70)
-   instagram = models.CharField(max_length=70)
-   github = models.CharField(max_length=70)
+   facebook = models.CharField(max_length=70,null=True,default='#')
+   twitter = models.CharField(max_length=70,null=True,default='#')
+   instagram = models.CharField(max_length=70,null=True,default='#')
+   github = models.CharField(max_length=70,null=True,default='#')
    prfl = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
    def __str__(self):

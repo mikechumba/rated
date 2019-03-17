@@ -1,0 +1,16 @@
+{% load static %}
+<nav>
+   <div class="logo">
+      <div class="star-logo">
+         <img src="{% static 'images/star-full.svg' %}" alt="">
+      </div>
+      <h3>Rated.</h3>
+   </div>
+   <div class="menu-right">
+      {% if user.is_authenticated %}
+         <a class='prfl-icon' href="{% url 'profile' %}">
+            <i class="fas fa-user-circle"></i>
+         </a>
+      {% endif %}
+   </div>
+</nav>

@@ -1,0 +1,43 @@
+{% extends "rate/layout.html" %}
+{% load static %}
+
+{% block content %}
+
+   <div class="nav-bg">
+      {% include "rate/nav.html" %}
+   </div>
+
+   <div class="prfl-card">
+      <div class="avatar-lg">
+         <img src="{{ user.profile.avatar.url }}" alt="">
+      </div>
+      <div class="prfl-desc">
+         <div class="bio">
+            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+            <p>@{{ user.username }}</p>
+            <p class="bio-txt">{{ user.profile.bio }}</p>
+         </div>
+         <div class="contacts">
+            <div class="email">
+               <a href="/{{ user.email }}" clci>{{ user.email }}</a>
+            </div>
+            <div class="social">
+               <a href="">
+                  <i class="fab fa-facebook-f"></i>
+               </a>
+               <a href="">
+                  <i class="fab fa-twitter"></i>
+               </a>
+               <a href="">
+                  <i class="fab fa-instagram"></i>
+               </a>
+               <a href="">
+                  <i class="fab fa-github"></i>
+               </a>
+            </div>
+
+         </div>
+      </div>
+   </div>
+  
+{% endblock content %}
