@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
 from .models import Profile,Project,Language,Rating,Contact
-from .forms import Registration,LoginForm,ProfileUpdateForm,ContactUpdateForm
+from .forms import Registration,LoginForm,ProfileUpdateForm,ContactUpdateForm,ProjectForm
 
 # Create your views here.
 def home(request):
@@ -81,4 +81,23 @@ def edit_profile(request):
 
 def new_project(request):
 
-   
+   user = request.user
+
+   title = 'New Project'
+
+   if request.method == 'POST':
+      form = ProjectForm(request.POST,request.FILES)
+      if form.is_valid():
+         project = form.save(commit=False)
+         project.author = user.profile
+         project.save()
+         return redirect('home')
+   else:
+      form = ProjectForm()
+
+   context = {
+      'form': form,
+      'title': title
+   }
+
+   return render(request, 'rate/new_project.html',context)   

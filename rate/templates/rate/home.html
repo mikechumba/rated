@@ -4,6 +4,15 @@
 {% block content %}
 
    <div class="page"></div>
+   <div class="nav-bg">
+      {% include "rate/nav.html" %}
+      <div class="searchform">
+         <form action="" method="get">
+            {% csrf_token %}
+            <input type="text" name="project_search" id="prjct-search" placeholder="Search for a project">
+         </form>
+      </div>
+   </div>
 
    <div class="project-panel">
       {% for prjct in projects  %}
