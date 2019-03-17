@@ -24,7 +24,8 @@ class Project(models.Model):
    description = models.TextField(max_length=140)
    img = models.ImageField(upload_to='projects/')
    time_published = models.DateField(auto_now=True)
-
+   link = models.CharField(max_length=140)
+   
    def __str__(self):
       return self.name
 
@@ -39,7 +40,7 @@ class Language(models.Model):
 
    def __str__(self):
       return self.language
-
+      
 class Rating(models.Model):
    '''
    Model to hold projects' ratings

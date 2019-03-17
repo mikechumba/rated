@@ -1,0 +1,18 @@
+{% extends "rate/layout.html" %}
+{% load static %}
+
+{% block content %}
+
+   <div class="nav-bg">
+      {% include "rate/nav.html" %}
+   </div>
+
+   <div class="auth_form">
+      <form action="" method="post">
+         {% csrf_token %}
+         {{ form.as_p }}
+         <button type="submit">Sign Up</button>
+      </form>
+   </div>
+  
+{% endblock content %}
