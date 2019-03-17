@@ -1,0 +1,23 @@
+{% extends "rate/layout.html" %}
+{% load static %}
+
+{% block content %}
+
+   <div class="nav-bg">
+      {% include "rate/nav.html" %}
+   </div>
+
+   <div class="auth-form">
+      <form action="" method="POST">
+         {% csrf_token %}
+         <div class="form-group">
+            {{ form.as_p }}
+         </div>
+         <div class="form-group">
+            {{ contact_form.as_p }}
+         </div>
+         <button type="submit">Update Profile</button>
+      </form>
+   </div>
+  
+{% endblock content %}

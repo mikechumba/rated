@@ -40,7 +40,10 @@ def register(request):
          raw_password = form.cleaned_data.get('password1')
          user = authenticate(username=username,password=raw_password)
          login(request,user)
-         return redirect('home')
+         profile = Profile(user=user)
+         profile.save()
+
+         return redirect('update_profile')
    else:
       form = Registration()
 
@@ -50,3 +53,28 @@ def register(request):
    }
 
    return render(request,'rate/register.html',context)
+
+
+def edit_profile(request):
+
+   user = request.user
+
+   if request.method == 'POST':
+      form = ProfileUpdateForm(request.POST,request.FILES,instance=user.profile)
+      contact_form = ContactUpdateForm(request.POST)
+      if form.is_valid() and contact_form.is_valid():
+         form.save()
+         contact = contact_form.save(commit=False)
+         contact.prfl = user.profile
+         contact.save()
+         return redirect('profile')
+   else:
+      form = ProfileUpdateForm(instance=user.profile)
+      contact_form = ContactUpdateForm()
+
+   context = {
+      'form': form,
+      'contact_form': contact_form
+   }
+
+   return render(request,'rate/update_profile.html',context)
