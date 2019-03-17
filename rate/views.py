@@ -78,3 +78,7 @@ def edit_profile(request):
    }
 
    return render(request,'rate/update_profile.html',context)
+
+def new_project(request):
+
+   

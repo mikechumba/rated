@@ -53,3 +53,13 @@ class ContactUpdateForm(forms.ModelForm):
       model = Contact
       fields = ['facebook','twitter','instagram','github']
 
+
+class ProjectForm(forms.ModelForm):
+   '''
+   New project creation form.
+   '''
+
+   class Meta:
+      model = Project
+      fields = ['name','img','description','link']
+

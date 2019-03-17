@@ -14,6 +14,16 @@ class Profile(models.Model):
    def __str__(self):
       return self.user.username
 
+class Language(models.Model):
+   '''
+   Holds data for the programming languages used.
+   '''
+
+   language = models.CharField(max_length=50)
+
+   def __str__(self):
+      return self.language
+
 class Project(models.Model):
    '''
    Model to hold user's project data.
@@ -25,21 +35,10 @@ class Project(models.Model):
    img = models.ImageField(upload_to='projects/')
    time_published = models.DateField(auto_now=True)
    link = models.CharField(max_length=140)
+   language = models.ManyToManyField(Language)
    
    def __str__(self):
       return self.name
-
-class Language(models.Model):
-   '''
-   Holds data for the programming languages used.
-   '''
-
-   language = models.CharField(max_length=50)
-   framework = models.CharField(max_length=50)
-   used_on = models.ForeignKey(Project, on_delete=models.CASCADE)
-
-   def __str__(self):
-      return self.language
       
 class Rating(models.Model):
    '''
