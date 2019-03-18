@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile,Contact,Project
+from .models import Profile,Contact,Project,Language
 from django.contrib.auth.models import User
 
 
@@ -14,9 +14,18 @@ class UserSerializer(serializers.ModelSerializer):
    class Meta:
       model = User
       fields = ['first_name','last_name','username','email','profile']
-
+class LanguageSerializer(serializers.ModelSerializer):
+   class Meta:
+      model = Language
+      fields = ['language']
+class PrflSerializer(serializers.ModelSerializer):
+   user = UserSerializer('user')
+   class Meta:
+      model = Profile
+      fields = ['bio','user']
 class  ProjectSerializer(serializers.ModelSerializer):
-
+   author = PrflSerializer('profile')
+   language = LanguageSerializer('language',many=True)
    class Meta:
       model = Project
-      fields = ['name','author.user.first_name','author.user.last_name','description','language','link']
+      fields = ['name','description','language','link','author']
