@@ -32,6 +32,13 @@ A web app that allows user to post their projects and have them rated based on d
 
 - Fonts from [Google Fonts](fonts.google.com)
 
+### API
+
+This project consists of a simple HTTP REST API for getting profile and project data.
+
+To get profile data follow use this url:
+   - `http://`
+
 ### Setting Up
 
 If you feel like using this project as your own you can do so, following the instructions below:
