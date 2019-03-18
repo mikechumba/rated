@@ -37,7 +37,11 @@ A web app that allows user to post their projects and have them rated based on d
 This project consists of a simple HTTP REST API for getting profile and project data.
 
 To get profile data follow use this url:
-   - `http://`
+   - `https://hyoukasuru.herokuapp.com/api/profiles/`
+
+To get projects data follow this url:
+   - `https://hyoukasuru.herokuapp.com/api/projects/`
+
 
 ### Setting Up
 
