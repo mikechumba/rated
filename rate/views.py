@@ -113,10 +113,11 @@ def project_view(request,id):
 
    project = Project.objects.filter(pk=id).first()
 
-
    rating = Rating.objects.filter(rated=project)
    if rating:
-      average = (rating.aggregate(Sum('design'))['design__sum'] + rating.aggregate(Sum('usability'))['usability__sum'] + rating.aggregate(Sum('content'))['content__sum']) / rating.count()
+      average = ((rating.aggregate(Sum('design'))['design__sum'])/rating.count() + 
+      rating.aggregate(Sum('usability'))['usability__sum']/rating.count() + 
+      rating.aggregate(Sum('content'))['content__sum']/rating.count()) / 3
    else:
       average = '0.0'
 
@@ -124,6 +125,13 @@ def project_view(request,id):
 
    if request.method == 'POST':
       form = RatingForm(request.POST)
+      rated = Rating.objects.filter(rated=project,rated_by=user.profile)
+      if form.is_valid() and not rated:
+         rating = form.save(commit=False)
+         rating.rated_by = user.profile
+         rating.rated = project
+         rating.save()
+         return redirect('project_view', id=id)
    else:
       form = RatingForm()
 
@@ -132,7 +140,7 @@ def project_view(request,id):
       'project': project,
       'rating': rating,
       'average': average,
-      'form': form
+      'form': form,
    }
 
    return render(request,'rate/project_view.html',context)
