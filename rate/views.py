@@ -6,7 +6,7 @@ from .forms import Registration,LoginForm,ProfileUpdateForm,ContactUpdateForm,Pr
 from django.db.models import Sum
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializer import ProfileSerializer,ProjectSerializer
+from .serializer import ProfileSerializer,ProjectSerializer,UserSerializer
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 
@@ -30,7 +30,7 @@ def search(request):
       searched = request.GET.get("project_search")
       if searched:
          projects = Project.objects.filter(name=searched).all()
-         title = f"You search for {searched}"
+         title = f"You searched for {searched}"
 
    context = {
       'projects': projects,
@@ -185,3 +185,11 @@ def project_view(request,id):
 def logout_view(request):
    logout(request)
    return redirect('login')
+
+
+
+class ProfileList(APIView):
+   def get(self,request,format=None):
+      users = User.objects.all()
+      serializers = UserSerializer(users,many=True)
+      return Response(serializers.data)
