@@ -41,14 +41,15 @@
          <div class="rating-form">
             <form action="" method="post">
                {% csrf_token %}
-               <p>How would you rate the design?</p>
+               {{ form.as_p }}
+               <!-- <p>How would you rate the design?</p>
                {% include "extra/design.html" %}
                <p>How would you rate its usabilty?</p>
                {% include "extra/ux.html" %}
                <p>How would you rate its content?</p>
                {% include "extra/content.html" %}
                <input name="being_rated" type="number" value="{{ project.id }}" hidden>
-               <p id="rate">Rate</p>
+               <p id="rate">Rate</p> -->
             </form>
          </div>
       </div>

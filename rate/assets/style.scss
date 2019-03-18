@@ -285,11 +285,13 @@ input {
    p {
       @include fonts(12px,600);
    }
+   li {
+      display: inline-block;
+   }
    input {
       display: none;
-      
    }
-   label {
+   li label {
       &::before {
          cursor: pointer;
          font-family: "Font Awesome 5 Free";

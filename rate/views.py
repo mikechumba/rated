@@ -132,6 +132,7 @@ def project_view(request,id):
       'project': project,
       'rating': rating,
       'average': average,
+      'form': form
    }
 
    return render(request,'rate/project_view.html',context)
