@@ -23,16 +23,37 @@ def home(request):
 
    return render(request, 'rate/home.html', context)
 
+
+def search(request):
+   
+   if 'project_search' in request.GET and request.GET["project_search"]:
+      searched = request.GET.get("project_search")
+      if searched:
+         projects = Project.objects.filter(name=searched).all()
+         title = f"You search for {searched}"
+
+   context = {
+      'projects': projects,
+      'title': title,
+      'searched': searched
+   }
+
+   return render(request, 'rate/search.html', context)
+
 @login_required(login_url='register')
 def profile(request):
    user = request.user
 
+   projects = Project.objects.filter(author=user.profile)
+
    title = f'{user.first_name} {user.last_name}'
    context = {
-      'title': title
+      'title': title,
+      'projects': projects
    }
 
    return render(request,'rate/profile.html',context)
+
 
 
 def register(request):
@@ -64,6 +85,8 @@ def register(request):
 @login_required(login_url='register')
 def edit_profile(request):
 
+   title = f"Edit Profile | {request.user.first_name} {request.user.last_name}" 
+
    user = request.user
 
    if request.method == 'POST':
@@ -81,7 +104,8 @@ def edit_profile(request):
 
    context = {
       'form': form,
-      'contact_form': contact_form
+      'contact_form': contact_form,
+      'title': title
    }
 
    return render(request,'rate/update_profile.html',context)

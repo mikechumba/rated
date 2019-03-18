@@ -7,38 +7,67 @@
       {% include "rate/nav.html" %}
    </div>
 
-   <div class="prfl-card">
-      <div class="avatar-lg">
-         <img src="{{ user.profile.avatar.url }}" alt="">
+   <div class="prfl-container">
+      <div class="prfl-card">
+         <div class="avatar-lg">
+            <img src="{{ user.profile.avatar.url }}" alt="">
+         </div>
+         <div class="prfl-desc">
+            <div class="bio">
+               <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+               <p>@{{ user.username }}</p>
+               <p class="bio-txt">{{ user.profile.bio }}</p>
+            </div>
+            <div class="contacts">
+               <div class="email">
+                  <a href="/{{ user.email }}" clci>{{ user.email }}</a>
+               </div>
+               <div class="social">
+                  <a href="">
+                     <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="">
+                     <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="">
+                     <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="">
+                     <i class="fab fa-github"></i>
+                  </a>
+               </div>
+               <a href="{% url 'update_profile' %}">
+                  <button class='btn'>Edit Profile</button>
+               </a>
+            </div>
+         </div>
       </div>
-      <div class="prfl-desc">
-         <div class="bio">
-            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-            <p>@{{ user.username }}</p>
-            <p class="bio-txt">{{ user.profile.bio }}</p>
-         </div>
-         <div class="contacts">
-            <div class="email">
-               <a href="/{{ user.email }}" clci>{{ user.email }}</a>
-            </div>
-            <div class="social">
-               <a href="">
-                  <i class="fab fa-facebook-f"></i>
-               </a>
-               <a href="">
-                  <i class="fab fa-twitter"></i>
-               </a>
-               <a href="">
-                  <i class="fab fa-instagram"></i>
-               </a>
-               <a href="">
-                  <i class="fab fa-github"></i>
-               </a>
-            </div>
-            <a href="{% url 'update_profile' %}">
-               <button >Edit Profile</button>
+
+      <div class="project-pane">
+         {% for prjct in projects  %}
+            <a href="{% url 'project_view' prjct.id %}">
+               <div class="project-card">
+                  <div class="image">
+                     <img src="{{ prjct.img.url }}" alt="{{ prjct.name }}">
+                  </div>
+                  <div class="project-desc">
+                     <div class="author">
+                        <div class="avatar-sm">
+                           <img src="{{ prjct.author.avatar.url }}" alt="">
+                        </div>
+                        <p>{{ prjct.author.user.first_name }} {{ prjct.author.user.last_name }}</p>
+                     </div>
+                     <h4>{{ prjct.name }}</h4>
+                     <div class="languages">
+                        {% for lng in prjct.language.all  %}
+                           <p>#{{ lng.language }}</p>
+                        {% endfor %}
+                     </div>
+
+                  </div>        
+               </div>        
             </a>
-         </div>
+         {% endfor %}
       </div>
    </div>
   

@@ -21,6 +21,14 @@
       </div>     
    {% endif %}
 
+   <div class="search-notif">
+      {% if projects %}
+         <h1>Your search for <span>{{ searched }}</span> returned:</h1>  
+      {% else %}
+         <h1>There are no search results for <span>{{ searched }}</span></h1>
+      {% endif %}
+   </div>
+   
    <div class="project-pane">
       {% for prjct in projects  %}
          <a href="{% url 'project_view' prjct.id %}">

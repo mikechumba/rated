@@ -12,6 +12,6 @@ urlpatterns = [
    path('profile/update',views.edit_profile,name='update_profile'),
    path('project/new',views.new_project,name='new_project'),
    path('project/view/<int:id>',views.project_view,name='project_view'),
-
+   path('search/',views.search,name="search")
    # Extra views
 ]

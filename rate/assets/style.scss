@@ -118,6 +118,10 @@ nav {
    }
 }
 
+.prfl-container {
+   display: flex;
+}
+
 .new-post {
    margin: 2% 2.5%;
 }
@@ -158,6 +162,16 @@ input {
    }
 }
 
+.search-notif {
+   margin: 1% 2.5%;
+   h1 {
+      @include fonts(16px,600);
+      span {
+         @include fonts(16px,600,clr(scndry));
+      }
+   }
+}
+
 .searchform {
    padding: 0 2% 1.5% 2%;
    input {
@@ -187,7 +201,7 @@ input {
 .prfl-card {
    margin: 2%;
    background-color: clr(scndry);
-   width: 15%;
+   width: 20%;
    box-shadow: 1px 1px 4px 1px #D0D0D1;
    .avatar-lg {
       width: 100%;
@@ -312,6 +326,15 @@ input {
       padding-bottom: 5%;
       @include fonts(12px,500);
    }
+}
+
+.contacts > button {
+   background-color: transparent;
+   border: 1px solid rgba(#333,0.6);
+}
+
+.contacts > a {
+   padding: 3% 0;
 }
 
 .project-desc {
