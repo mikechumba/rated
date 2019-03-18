@@ -11,6 +11,7 @@
       <form action="" method="POST" enctype="multipart/form-data">
          {% csrf_token %}
          {{ form.as_p }}
+         <p class='auth-hint'>Use 'Control' on PC or 'Command' on Mac to select multiple languages</p>
          <button class="btn" type="submit">Publish</button>
       </form>
    </div>

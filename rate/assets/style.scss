@@ -269,11 +269,48 @@ input {
 }
 
 .auth-form {
-   width: 50%;
-   margin: 0 auto;
+   width: 30%;
+   margin: 5% auto;
    text-align: center;
+   box-shadow: 1px 1px 6px 1px rgba(#333,0.1);
+   form {
+      width: 96%;
+      margin: 4% auto;
+      padding: 4% 0 3% 0;
+      input {
+         width: 80%;
+      }
+   }
    label {
       display: none;
+   }
+   input {
+      border: 1px solid rgba(clr(prmry),0.2);
+      @include fonts(12px,600);
+      &::placeholder {
+         @include fonts(12px,500);
+      }
+      &:focus {
+         outline: none;
+         border: 1px solid clr(scndry);
+      }
+   }
+   .btn {
+      cursor: pointer;
+      padding: 6px 14px;
+   }
+   select {
+      width: 84%;
+      padding: 6px 8px;
+   }
+
+   p.auth-hint {
+      @include fonts(10px,500);
+   }
+
+   p.auth-switch {
+      padding-bottom: 5%;
+      @include fonts(12px,500);
    }
 }
 

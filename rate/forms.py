@@ -48,7 +48,10 @@ class ContactUpdateForm(forms.ModelForm):
    '''
    User contact update form.
    '''
-
+   facebook = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Facebook Linkgcm '}))
+   twitter = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Twitter Link'}))
+   instagram = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Instagram Link'}))
+   github = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Github Link'}))
    class Meta:
       model = Contact
       fields = ['facebook','twitter','instagram','github']
@@ -58,6 +61,11 @@ class ProjectForm(forms.ModelForm):
    '''
    New project creation form.
    '''
+
+   name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Project Title'}))
+   description = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Description'}))
+   link = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Project Link'}))
+   description = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Project Description'}))
 
    class Meta:
       model = Project
