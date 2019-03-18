@@ -247,6 +247,7 @@ input {
 
 .project-meta {
    h5 {
+      margin: 0;
       @include fonts(14px,600,rgba(#333,0.9));
    }
 }
@@ -279,8 +280,11 @@ input {
    }
 }
 
-.ratings {
+.rating-form {
    padding: 1% 0;
+   p {
+      @include fonts(12px,600);
+   }
    input {
       display: none;
       
@@ -308,7 +312,7 @@ input {
    display: flex;
    i {
       align-self: center;
-      font-size: 24px;
+      font-size: 20px;
       color: clr(scndry);
    }
    div {
@@ -316,7 +320,7 @@ input {
       align-self: center;
       line-height: 0.5;
       h1 {
-         @include fonts(30px,700);
+         @include fonts(24px,700);
       }
    }
 }

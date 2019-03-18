@@ -44,11 +44,12 @@ class Rating(models.Model):
    '''
    Model to hold projects' ratings
    '''
-
+   review = models.CharField(max_length=140,default='')
    design = models.IntegerField(default=0)
    usability = models.IntegerField(default=0)
    content = models.IntegerField(default=0)
    rated = models.ForeignKey(Project, on_delete=models.CASCADE)
+   rated_by = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
    def __str__(self):
       return self.rated.name
@@ -57,7 +58,6 @@ class Contact(models.Model):
    '''
    Contact class to hold the different contact details of a user
    '''
-
    facebook = models.CharField(max_length=70,null=True,default='#')
    twitter = models.CharField(max_length=70,null=True,default='#')
    instagram = models.CharField(max_length=70,null=True,default='#')

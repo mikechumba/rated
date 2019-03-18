@@ -63,3 +63,12 @@ class ProjectForm(forms.ModelForm):
       model = Project
       fields = ['name','img','description','link','language']
 
+
+class RatingForm(forms.ModelForm):
+   '''
+   Ratings form
+   '''
+
+   class Meta:
+      model = Rating
+      fields = ['design','usability','content']
