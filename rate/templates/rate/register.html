@@ -7,12 +7,13 @@
       {% include "rate/nav.html" %}
    </div>
 
-   <div class="auth_form">
+   <div class="auth-form">
       <form action="" method="post">
          {% csrf_token %}
          {{ form.as_p }}
-         <button type="submit">Sign Up</button>
+         <button class="btn" type="submit">Sign Up</button>
       </form>
+      <p>Have an account? <a href="{% url 'login' %}">Log In</a></p>
    </div>
   
 {% endblock content %}

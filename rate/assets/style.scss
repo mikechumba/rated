@@ -86,35 +86,59 @@ nav {
             font-size: 20px;
             color: clr(prmry);
          }
+         p {
+            @include fonts(12px,600)
+         }
       }
    }
 }
 
 .project-pane {
-   overflow-x: scroll;
-   margin: 2% 0;
-   white-space: nowrap;
-
+   margin: 2% 1%;
+   display: flex;
+   flex-direction: row wrap;
    .project-card {
       margin-left: 1.5%;
-      display: inline-block;
-      width: 400px;  
+      width: 30%;  
       height: 300px;
       overflow: hidden;
       background-color: #fff;
       .image {
-         width: 80%;
+         width: 100%;
          height: auto;
          margin: 0 auto;
          img {
             width: 100%;
          }
       }
-
+      &:hover {
+         z-index: 10;
+         box-shadow: 1px 1px 6px 1px rgba(#333,0.1);
+      }
    }
+}
 
-   &::-webkit-scrollbar {
-      display: none;
+.new-post {
+   margin: 2% 2.5%;
+}
+
+.btn {
+   background-color: clr(scndry);
+   border: none;
+   padding: 8px 10px;
+   @include fonts(12px,600);
+}
+
+.project-desc > h4 {
+   margin: 1% 0;
+   @include fonts(14px,600);
+}
+
+.languages {
+   display: flex;
+   p {
+      margin-left: 2%;
+      @include fonts(10px,600,clr(scndry));
    }
 }
 
@@ -228,9 +252,14 @@ input {
 
 .project-preview {
    width: 46%;
+   height: 80vh;
    margin: 2%;
+   display: flex;
+   background-color: #fafafa;
    .project-image {
+      align-self: center;
       width: 80%;
+      margin: 0 auto;
       height: auto;
       overflow: hidden;
       img {
@@ -239,6 +268,14 @@ input {
    }
 }
 
+.auth-form {
+   width: 50%;
+   margin: 0 auto;
+   text-align: center;
+   label {
+      display: none;
+   }
+}
 
 .project-desc {
    width: 46%;
@@ -285,13 +322,34 @@ input {
    p {
       @include fonts(12px,600);
    }
+   ul {
+      padding: 0;
+   }
    li {
       display: inline-block;
    }
    li input {
       display: none;
    }
-   li label {
+   li > input:checked ~ label:before {
+      font-family: "Font Awesome 5 Free";
+      content: '\f005';
+      display: inline-block;
+      color: clr(scndry);
+      fill: clr(scndry);
+      font-weight: 900;      
+   }
+
+   #id_design > input:checked ~ label:before {
+      font-family: "Font Awesome 5 Free";
+      content: '\f005';
+      display: inline-block;
+      color: clr(scndry);
+      fill: clr(scndry);
+      font-weight: 900;
+   }
+   
+   li > label {
       &::before {
          cursor: pointer;
          font-family: "Font Awesome 5 Free";
@@ -299,14 +357,24 @@ input {
          display: inline-block;
          margin-right: 3px;
       }
-      &:hover::before {
-         font-family: "Font Awesome 5 Free";
-         content: '\f005';
-         display: inline-block;
-         color: clr(scndry);
-         fill: clr(scndry);
-         font-weight: 900;
-      }
+      // &:hover::before ~ &:before {
+      //    font-family: "Font Awesome 5 Free";
+      //    content: '\f005';
+      //    display: inline-block;
+      //    color: clr(scndry);
+      //    fill: clr(scndry);
+      //    font-weight: 900;
+      // }
+   }
+
+   li > label:hover:before,
+   li > label:hover ~ label:before {
+      font-family: "Font Awesome 5 Free";
+      content: '\f005';
+      display: inline-block;
+      color: clr(scndry);
+      fill: clr(scndry);
+      font-weight: 900;
    }
 }
 
@@ -330,5 +398,47 @@ input {
 .description {
    p {
       @include fonts(14px,500);
+   }
+}
+
+.reviews {
+   margin: 5% 0;
+}
+
+.prjct-review {
+   display: flex;
+   margin: 1% 0;
+   width: 96%;
+   > .ratings {
+      margin-left: auto;
+      display: flex;
+      i {
+         font-size: 14px;
+      }
+      h1 {
+         font-size: 14px;
+      }
+      .overall {
+         margin-top: 3%;
+         margin-left: 10px;
+      }
+   }
+
+   .author {
+      p {
+         align-self: center;
+      }
+   }
+
+   p.the-review {
+      margin-left: 1%;
+      @include fonts(12px,600);
+   }
+
+   &::before {
+      content: '';
+      display: inline-block;
+      margin-right: 1%;
+      border: 0.5px solid rgba(#333,0.1);
    }
 }

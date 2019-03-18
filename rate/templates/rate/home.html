@@ -13,13 +13,35 @@
          </form>
       </div>
    </div>
+   {% if user.is_authenticated %}
+      <div class="container new-post">
+         <a href="{% url 'new_project' %}">
+            <button class='btn'><i class="fas fa-plus-circle"></i> Add Project</button>
+         </a>
+      </div>     
+   {% endif %}
 
-   <div class="project-panel">
+   <div class="project-pane">
       {% for prjct in projects  %}
          <a href="{% url 'project_view' prjct.id %}">
             <div class="project-card">
                <div class="image">
                   <img src="{{ prjct.img.url }}" alt="{{ prjct.name }}">
+               </div>
+               <div class="project-desc">
+                  <div class="author">
+                     <div class="avatar-sm">
+                        <img src="{{ prjct.author.avatar.url }}" alt="">
+                     </div>
+                     <p>{{ prjct.author.user.first_name }} {{ prjct.author.user.last_name }}</p>
+                  </div>
+                  <h4>{{ prjct.name }}</h4>
+                  <div class="languages">
+                     {% for lng in prjct.language.all  %}
+                       <p>#{{ lng.language }}</p>
+                     {% endfor %}
+                  </div>
+
                </div>        
             </div>        
          </a>

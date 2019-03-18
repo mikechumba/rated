@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -22,6 +23,7 @@ def home(request):
 
    return render(request, 'rate/home.html', context)
 
+@login_required(login_url='register')
 def profile(request):
    user = request.user
 
@@ -59,7 +61,7 @@ def register(request):
 
    return render(request,'rate/register.html',context)
 
-
+@login_required(login_url='register')
 def edit_profile(request):
 
    user = request.user
@@ -84,6 +86,7 @@ def edit_profile(request):
 
    return render(request,'rate/update_profile.html',context)
 
+@login_required(login_url='register')
 def new_project(request):
 
    user = request.user
@@ -107,17 +110,19 @@ def new_project(request):
 
    return render(request, 'rate/new_project.html',context)
 
+@login_required(login_url='register')
 def project_view(request,id):
 
    user = request.user
 
    project = Project.objects.filter(pk=id).first()
 
-   rating = Rating.objects.filter(rated=project)
-   if rating:
-      average = ((rating.aggregate(Sum('design'))['design__sum'])/rating.count() + 
-      rating.aggregate(Sum('usability'))['usability__sum']/rating.count() + 
-      rating.aggregate(Sum('content'))['content__sum']/rating.count()) / 3
+   ratings = Rating.objects.filter(rated=project)
+
+   if ratings:
+      average = ((ratings.aggregate(Sum('design'))['design__sum'])/ratings.count() + 
+      ratings.aggregate(Sum('usability'))['usability__sum']/ratings.count() + 
+      ratings.aggregate(Sum('content'))['content__sum']/ratings.count()) / 3
    else:
       average = '0.0'
 
@@ -132,36 +137,27 @@ def project_view(request,id):
          rating.rated = project
          rating.save()
          return redirect('project_view', id=id)
+      elif form.is_valid() and rated:
+         rated.delete()
+         rating = form.save(commit=False)
+         rating.rated_by = user.profile
+         rating.rated = project
+         rating.save()
+         return redirect('project_view', id=id)
    else:
       form = RatingForm()
 
    context = {
       'title': title,
       'project': project,
-      'rating': rating,
+      'ratings': ratings,
       'average': average,
       'form': form,
    }
 
    return render(request,'rate/project_view.html',context)
 
-def rate(request):
-
-   user = request.user
-   rating = Rating.objects.filter(rated_id=request.POST['being_rated'],rated_by=user.profile).first()
-   
-   if rating:
-
-      rating.design = request.POST['dsgn']
-      rating.usability = request.POST['usblty']
-      rating.content = request.POST['cntnt']
-
-      rating.save()
-   else:
-
-      rated = Rating(design=request.POST['dsgn'],usability=request.POST['usblty'],content=request.POST['cntnt'],rated_id=request.POST['being_rated'],rated_by=user.profile)
-      rated.save()
-
-   return JsonResponse(rated,safe=False)
-
-
+@login_required(login_url='register')
+def logout_view(request):
+   logout(request)
+   return redirect('login')

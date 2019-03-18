@@ -13,6 +13,10 @@
          <a class='prfl-icon' href="{% url 'profile' %}">
             <i class="fas fa-user-circle"></i>
          </a>
+      {% else %}
+         <a class='prfl-icon' href="{% url 'login' %}">
+            <p>Log In</p>
+         </a>
       {% endif %}
    </div>
 </nav>

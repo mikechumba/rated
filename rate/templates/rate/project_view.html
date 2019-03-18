@@ -30,7 +30,7 @@
                <div class="overall">
                   <i class="fas fa-star"></i>
                   <div>
-                     <h1>{{ average }}</h1>
+                     <h1>{{ average|floatformat }}</h1>
                   </div>
                </div>
             </div>
@@ -38,6 +38,39 @@
          <div class="description">
 
             <p>{{ project.description }}</p>
+         </div>
+         <div class="reviews">
+            {% for rating in ratings  %}
+               <div class="prjct-review">
+                  <div class="author">
+                     <div class="avatar-sm">
+                        <img src="{{ rating.rated_by.avatar.url }}" alt="">
+                     </div>
+                     <p>{{ rating.rated_by.user.username }}</p>
+                  </div>
+                  <p class="the-review">{{ rating.review }}</p>
+                  <div class="ratings">
+                     <div class="overall">
+                        <i class="fas fa-star"></i>
+                        <div>
+                           <h1>{{ rating.design }}</h1>
+                        </div>
+                     </div>
+                     <div class="overall">
+                        <i class="fas fa-star"></i>
+                        <div>
+                           <h1>{{ rating.usability }}</h1>
+                        </div>
+                     </div>
+                     <div class="overall">
+                        <i class="fas fa-star"></i>
+                        <div>
+                           <h1>{{ rating.content }}</h1>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            {% endfor %}
          </div>
          <div class="rating-form">
             <form action="" method="post">

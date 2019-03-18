@@ -85,7 +85,7 @@ class RatingForm(forms.ModelForm):
    design = forms.ChoiceField(choices=RATINGS, widget=forms.RadioSelect())
    usability = forms.ChoiceField(choices=RATINGS, widget=forms.RadioSelect())
    content = forms.ChoiceField(choices=RATINGS, widget=forms.RadioSelect())  
-   review = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter a Review'})) 
+   review = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Give a review'})) 
    class Meta:
       model = Rating
       fields = ['design','usability','content','review']
