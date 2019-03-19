@@ -20,7 +20,7 @@ def create_language_instance():
    return language
 
 def create_rating_instance():
-   review = Review(review='A review',design=10,usability=10,content=10,rated_id=1,rated_by_id=1)
+   review = Rating(review='A review',design=10,usability=10,content=10,rated_id=1,rated_by_id=1)
    return review
 
 def create_contact_instance():
@@ -71,28 +71,27 @@ class ProjectTest(TestCase):
    def test_project_instance(self):
       self.assertTrue(isinstance(self.new_project,Project))
 
-   # def test_save_project(self):
-   #    self.new_project.language.set('Python')
-   #    project = self.new_project.save()
-
-   #    create_user_instance().save()
-   #    create_profile_instance.save()
-   #    projects = Project.objects.all()      
-   #    self.assertTrue(len(projects),1)
-
 class ContactTest(TestCase):
 
    def setUp(self):
+      self.profile = create_profile_instance()
+      self.user = create_user_instance()
       self.new_contact = create_contact_instance()
 
    def test_contact_instance(self):
       self.assertTrue(isinstance(self.new_contact,Contact))
 
    def test_save_contact(self):
-      user = create_user_instance()
-      profile = create_profile_instance()
       self.new_contact.save()
-      user.save()
-      profile.save()
+      # self.profile.save()
+      # self.user.save()
       contacts = Contact.objects.all()
       self.assertTrue(len(contacts),1)
+
+class RatingTest(TestCase):
+
+   def setUp(self):
+      self.new_rating = create_rating_instance()
+
+   def test_rating_instance(self):
+      self.assertTrue(isinstance(self.new_rating,Rating))
