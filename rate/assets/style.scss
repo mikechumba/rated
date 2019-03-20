@@ -388,53 +388,57 @@ input {
    li {
       display: inline-block;
    }
-   li input {
+   li label > input {
       display: none;
    }
-   li > input:checked ~ label:before {
-      font-family: "Font Awesome 5 Free";
-      content: '\f005';
-      display: inline-block;
-      color: clr(scndry);
-      fill: clr(scndry);
-      font-weight: 900;      
-   }
-
-   #id_design > input:checked ~ label:before {
-      font-family: "Font Awesome 5 Free";
-      content: '\f005';
-      display: inline-block;
-      color: clr(scndry);
-      fill: clr(scndry);
-      font-weight: 900;
-   }
    
-   li > label {
-      &::before {
-         cursor: pointer;
+   li#id_design label {
+      > input:checked {
          font-family: "Font Awesome 5 Free";
          content: '\f005';
          display: inline-block;
-         margin-right: 3px;
+         color: rgba(#333,0.2);
+         font-weight: 900;
       }
-      // &:hover::before ~ &:before {
-      //    font-family: "Font Awesome 5 Free";
-      //    content: '\f005';
-      //    display: inline-block;
-      //    color: clr(scndry);
-      //    fill: clr(scndry);
-      //    font-weight: 900;
-      // }
+      ~ ::before {
+         font-family: "Font Awesome 5 Free";
+         content: '\f005';
+         display: inline-block;
+         color: rgba(#333,0.2);
+         font-weight: 900;
+      }      
    }
 
-   li > label:hover:before,
-   li > label:hover ~ label:before {
+   li > label::before {
+      cursor: pointer;
+      font-family: "Font Awesome 5 Free";
+      content: '\f005';
+      display: inline-block;
+      color: rgba(#333,0.2);
+      font-weight: 900;
+   }
+
+   li > label:hover::before,
+   li > label:hover ~ label::before {
+      cursor: pointer;
       font-family: "Font Awesome 5 Free";
       content: '\f005';
       display: inline-block;
       color: clr(scndry);
-      fill: clr(scndry);
       font-weight: 900;
+   }
+
+}
+
+.project-meta {
+   h1.title {
+      margin-bottom: 1%;
+   }
+   .languages {
+      p {
+         margin: 1% 0 2% 0;
+         margin-right: 1%;
+      }
    }
 }
 
