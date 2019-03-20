@@ -26,7 +26,7 @@
             <h1 class="title">{{ project.name }} <a class='prjct-link' href="{{project.link}}"><i class="fas fa-external-link-alt"></i></a></h1>
             <div class="languages">
                {% for lng in project.language.all  %}
-                 <p>#{{ lng.language }}</p>
+                 <p>#{{ lng.language }} </p>
                {% endfor %}
             </div>
             <h5>{{ project.time_published|date:'M d, Y' }}</h5>
